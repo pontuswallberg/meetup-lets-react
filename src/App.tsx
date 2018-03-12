@@ -19,7 +19,7 @@ class App extends React.Component<Props, State> {
 		if (value !== "") {
 			this.setState(
 				prevState => ({
-					items: [...prevState.items, value],
+					items: prevState.items.concat(value),
 				}),
 				() => {
 					input.value = "";
