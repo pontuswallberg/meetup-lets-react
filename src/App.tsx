@@ -15,9 +15,7 @@ class App extends React.Component<Props, State> {
 	};
 
 	handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({
-			value: event.target.value,
-		});
+		this.setState({ value: event.target.value });
 	};
 
 	handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -86,9 +84,7 @@ function TodoList(props: TodoListProps) {
 						{item}
 						<button
 							className="button todo-list-remove-button"
-							onClick={() => {
-								props.removeItem(index);
-							}}
+							onClick={() => props.removeItem(index)}
 						>
 							Remove
 						</button>
