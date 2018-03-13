@@ -33,9 +33,7 @@ class App extends React.Component<Props, State> {
 		});
 	};
 
-	removeItem = (event: React.MouseEvent<HTMLButtonElement>) => {
-		const button = event.currentTarget;
-		const index = parseInt(button.getAttribute("data-index") || "", 10);
+	removeItem = (index: number) => {
 		this.setState(prevState => {
 			const items = prevState.items.slice();
 			items.splice(index, 1);
@@ -73,7 +71,7 @@ class App extends React.Component<Props, State> {
 
 interface TodoListProps {
 	items: string[];
-	removeItem: React.MouseEventHandler<HTMLButtonElement>;
+	removeItem: (index: number) => void;
 }
 
 function TodoList(props: TodoListProps) {
@@ -88,8 +86,9 @@ function TodoList(props: TodoListProps) {
 						{item}
 						<button
 							className="button todo-list-remove-button"
-							data-index={index}
-							onClick={props.removeItem}
+							onClick={() => {
+								props.removeItem(index);
+							}}
 						>
 							Remove
 						</button>
