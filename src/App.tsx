@@ -13,19 +13,24 @@ class App extends React.Component<Props, State> {
 		items: [],
 		value: "",
 	};
+
 	handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		this.setState({
 			value: event.target.value,
 		});
 	};
+
 	handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		if (this.state.value !== "") {
-			this.setState(prevState => ({
+		this.setState(prevState => {
+			if (prevState.value === "") {
+				return undefined;
+			}
+			return {
 				items: prevState.items.concat(prevState.value),
 				value: "",
-			}));
-		}
+			};
+		});
 	};
 
 	removeItem = (event: React.MouseEvent<HTMLButtonElement>) => {
